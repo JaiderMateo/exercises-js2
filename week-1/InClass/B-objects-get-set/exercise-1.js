@@ -9,4 +9,5 @@ var kitten = {
 };
 
 // YOUR CODE HERE
-
+var kittenArray = Object.keys(kitten);
+kittenArray.map((i)=>console.log(i));

@@ -55,6 +55,14 @@ var mentors = [
         company: "Google",
         position: "Senior developer",
         city: "Barcelona"
+      },
+      //3:
+      addSkill: function (skill){
+        this.skills.push(skill)
+      },
+      //7
+      addStudentLikes: function(){
+        this.studentLikes ++;
       }
   },
   {
@@ -68,6 +76,14 @@ var mentors = [
         company: "FC Barcelona",
         position: "Player",
         city: "Barcelona"
+      },
+      //3:
+      addSkill: function (skill){
+        this.skills.push(skill)
+      },
+      //7
+      addStudentLikes: function(){
+        this.studentLikes ++;
       }
   },
   {
@@ -81,6 +97,14 @@ var mentors = [
         company: "Facebook",
         position: "Software Manager",
         city: "Chicago"
+      },
+      //3:
+      addSkill: function (skill){
+        this.skills.push(skill)
+      },
+      //7
+      addStudentLikes: function(){
+        this.studentLikes ++;
       }
   },  
   {
@@ -94,10 +118,56 @@ var mentors = [
         company: "Amazon",
         position: "Senior developer",
         city: "Barcelona"
+      },
+      //3:
+      addSkill: function (skill){
+        this.skills.push(skill)
+      },
+      //7
+      addStudentLikes: function(){
+        this.studentLikes ++;
       }
   },
-
+  
 ];
 
+//1:
+mentors.forEach(i => {
+  if(i.job.city == "Barcelona"){
+    console.log(`Hi, my name is ${i.firstName} ${i.lastName}. I work in Barcelona and i know React.`);
+    //2:
+    i.class="Jun1"
+    i.skills.push("SQL")
+  }
+});
+
+
+//4:
+function addSkill(mentors,newSkill){
+  mentors.map((i)=>i.addSkill(newSkill));
+}
+
+
+//5:
+function removeSkill(mentors,newSkill){
+  mentors.map((i)=>i.skills.splice( (i.skills.findIndex((j)=>j == newSkill)), 1));
+}
+
+
+//6
+function mentorWithMoreSkills(){
+  let x = 0
+  console.log("entro al map")
+  mentors.map((i)=> {if(i.skills.length > mentors[x].skills.length)
+    x = mentors.indexOf(i);})
+  console.log(`the mentor with more skills is ${mentors[x].firstName} with ${mentors[x].skills.length} skills`);
+}
+
+
+//8:
+function addStudentLikes(mentors){
+  mentors.map((i)=>i.studentLikes++);
+  console.log(mentors);
+}
 //YOUR CODE HERE
 
