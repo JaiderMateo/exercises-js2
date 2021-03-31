@@ -15,6 +15,14 @@
  */
 function exerciseOne(arrayOfPeople) {
   let content = document.querySelector("#content");
+  arrayOfPeople.forEach(person => {
+    var Name1 = document.createElement("h1");
+    var Job1 = document.createElement("h2");
+    Name1.appendChild(document.createTextNode(person.name));
+    Job1.appendChild(document.createTextNode(person.job));
+    content.appendChild(Name1);
+    content.appendChild(Job1);
+  });
 }
 
 /**
@@ -26,6 +34,16 @@ function exerciseOne(arrayOfPeople) {
  */
 function exerciseTwo(shopping) {
   //Write your code in here
+  document.body.appendChild(document.createElement("ul"));
+  let lista = document.querySelector("ul");
+  lista.id = "content";
+  shopping.forEach(product => {
+    var producto = document.createElement("li");
+    producto.appendChild(document.createTextNode(product));
+    lista.appendChild(producto);
+  });
+
+
 }
 
 /**
@@ -57,8 +75,37 @@ function exerciseTwo(shopping) {
 
     The end result should look something like this: https://hyf-js2-week1-makeme-ex1-demo.herokuapp.com/
 **/
+
+const bookslinks = ['https://m.media-amazon.com/images/I/416Hql52NCL.jpg',
+'https://images-na.ssl-images-amazon.com/images/I/51iSxrqL+sL._SX335_BO1,204,203,200_.jpg',
+'https://m.media-amazon.com/images/I/518FqJvR9aL.jpg'
+ ]
 function exerciseThree(books) {
   //Write your code in here
+  let lista2 = document.body.appendChild(document.createElement("ul"));
+  lista2.id = "lista2";
+  lista2.style.display = "flex";
+  lista2.style.listStyle= 'none';
+  books.forEach(book => {
+    var libro = document.createElement("li");
+    var titulo = document.createElement('p');
+    var imagen = document.createElement('img');
+    titulo.appendChild(document.createTextNode(`${book.title} - ${book.author}`));
+    imagen.src = bookslinks[books.indexOf(book)];
+    imagen.width = "200";
+    libro.appendChild(titulo);
+    
+    libro.appendChild(imagen);
+    if(book.alreadyRead){
+      libro.style.backgroundColor = "green";
+    }else{
+      libro.style.backgroundColor = "red";
+    }
+    libro.style.width = "20%"
+    libro.style.margin = "5%"
+    libro.style.padding = "5%"
+    lista2.appendChild(libro);
+  });
 }
 
 //
