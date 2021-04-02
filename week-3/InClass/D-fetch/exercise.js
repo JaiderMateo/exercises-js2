@@ -10,3 +10,33 @@ user latitude and longitude.
 
 ================
 */
+let latitude = document.querySelector('#latitudTextField');
+let longitude = document.querySelector('#longitudTestField');
+let getButton = document.querySelector('#submitButton');
+let URL = `https://fcc-weather-api.glitch.me/api/current?lat=${latitude.value}&lon=${longitude.value}`;
+
+
+getButton.addEventListener('click', (event)=>{
+    //if(isNaN(latitude.value))
+    if(latitude.value == "" || longitude.value == "" || !(isNaN(longitude.value)) || !(isNaN(latitude.value))){
+        alert("not valid value");
+    }else{
+    event.preventDefault()
+    fetch(URL).then((Response)=>{
+            return Response.json();
+    }).then((myJson)=>{
+        let message = document.createElement('h3');
+        message.appendChild(document.createTextNode(`current temperature ${myJson.main.temp}`));
+        document.body.appendChild(message);
+    })
+}})
+console.log(typeof(parseInt(longitude.value, 'dfg')));
+console.log((isNaN(longitude.value)));
+console.log((isNaN(latitude.value)));
+// fetch(URL)
+// .then(function(response){
+//     console.log(response.status);
+//     return response.json();
+// }).then(function(myJson){
+//     console.log(myJson);
+// });

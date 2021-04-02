@@ -57,11 +57,75 @@ var movies = [
     haveWatched: false,
   },
 ];
-
 // create showMovies function
 
+function showMovies(){
+  //clear the movies
+  document.querySelectorAll('#all-movies p:not(.alert)').forEach(movie => movie.remove());
+
+  let allMovies = document.querySelector('#all-movies');
+  let numberMovies = document.querySelector('div#all-movies .alert.alert-info');
+  numberMovies.innerText = movies.length;
+
+  movies.forEach(movie => {
+    let pMovie = document.createElement('p');
+    pMovie.appendChild(document.createTextNode(`${movie.title} - ${movie.director}`));
+    allMovies.appendChild(pMovie);
+  });
+}
+setTimeout(showMovies, 1000);
 
 // create a new movie object for your favorite movie
-
+const favoriteMovie = {
+  title: "passengers",
+  director: "Morten Tyldum",
+  type: "science-fiction",
+  haveWatched: true,
+};
 
 // create addMovies function
+
+function addMovie(movie){
+  setTimeout(()=>{
+    movies.push(movie);
+    showMovies()
+  }, 2000)
+}
+
+addMovie(favoriteMovie);
+ //form
+ let text = document.createElement('h3');
+ text.appendChild(document.createTextNode('Add New Movie'));
+ document.body.appendChild(text);
+ //document.body.appendChild(document.createElement('h1').appendChild(document.createTextNode('Add New Movie')));
+const form = document.body.appendChild(document.createElement('form'));
+const properties = Object.keys(movies[0]);
+properties.forEach((propertie, i)=> {
+  let element = form.appendChild(document.createElement('input'));
+  element.id = `${propertie}TextField`;
+  element.type = `text`;
+  element.placeholder = `${propertie}`;
+})
+
+let element = form.appendChild(document.createElement('input'));
+element.id = `submitButton`;
+element.type = `submit`;
+element.value = `save`;
+
+//form function
+element.addEventListener('click', (event)=>{
+  event.preventDefault()
+  const titleTextField = document.getElementById('titleTextField');
+  const directorTextField = document.getElementById('directorTextField');
+  const typeTextField = document.getElementById('typeTextField');
+  const haveWatchedTextField = document.getElementById('haveWatchedTextField');
+  let movieForm = {
+    title: titleTextField.value,
+    director: directorTextField.value,
+    type: typeTextField.value,
+    haveWatched: haveWatchedTextField.value
+  };
+  console.log(movieForm);
+  addMovie(movieForm);
+  showMovies();
+})
